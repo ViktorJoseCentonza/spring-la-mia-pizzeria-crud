@@ -11,6 +11,11 @@
     <th:block th:if="${pizzas.size() > 0}">
         <ul th:each="pizza : ${pizzas}">
             <li th:text="${pizza.name}"></li>
+            <a th:href="@{http://localhost:8080/pizza/}+${pizza.id}">
+                <button>info</button>
+            </a>
+
+
         </ul>
     </th:block>
     <th:block th:unless="${pizzas.size() > 0}">
