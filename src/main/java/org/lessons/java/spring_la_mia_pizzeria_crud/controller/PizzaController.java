@@ -26,11 +26,20 @@ public class PizzaController {
         return "pizzas";
     }
 
-    @GetMapping("pizza/{id}")
+    @GetMapping("/pizza/{id}")
     public String show(@PathVariable("id") int id, Model model) {
 
         model.addAttribute("pizza", repository.findById(id).get());
         return "pizza";
+    }
+
+    @GetMapping("/search")
+    public String show(@RequestParam(name = "query") String query, Model model) {
+
+        List<Pizza> pizzas = repository.findByNameContainingIgnoreCase(query);
+
+        model.addAttribute("pizzas", pizzas);
+        return "pizzas";
     }
 
 }

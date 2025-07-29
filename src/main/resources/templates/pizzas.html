@@ -8,6 +8,7 @@
 </head>
 
 <body>
+    <th:block th:insert="fragments/navbar.html :: navbar"></th:block>
     <th:block th:if="${pizzas.size() > 0}">
         <ul th:each="pizza : ${pizzas}">
             <li th:text="${pizza.name}"></li>
