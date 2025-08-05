@@ -30,7 +30,7 @@ public class PizzaController {
     public String show(@PathVariable("id") int id, Model model) {
 
         model.addAttribute("pizza", repository.findById(id).get());
-        return "pizza";
+        return "pizzas/show";
     }
 
     @GetMapping("/search")
@@ -39,7 +39,7 @@ public class PizzaController {
         List<Pizza> pizzas = repository.findByNameContainingIgnoreCase(query);
 
         model.addAttribute("pizzas", pizzas);
-        return "pizzas";
+        return "pizzas/index";
     }
 
 }

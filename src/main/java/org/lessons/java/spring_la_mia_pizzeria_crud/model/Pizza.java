@@ -4,8 +4,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "pizzas")
@@ -14,10 +16,18 @@ public class Pizza {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Size(max = 50, message = "you've exceeded the 50 character limit")
     @NotBlank(message = "must insert a name")
     private String name;
+
+    @Size(max = 350, message = "you've exceeded the 350 character limit")
+    @Lob
     private String description;
+
+    @Size(max = 2048, message = "you've exceeded the 2048 character limit")
+    @Lob
     private String image_url;
+
     @NotBlank(message = "must insert a price")
     private Float price;
 
