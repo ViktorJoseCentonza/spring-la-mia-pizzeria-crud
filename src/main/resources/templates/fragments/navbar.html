@@ -5,19 +5,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>navbar</title>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.0.0/css/bootstrap.min.css}">
 </head>
 
 <body>
-    <header th:fragment="navbar">
-        <a href="/pizzas">
-            <button>
+    <header th:fragment="navbar" class="p-4">
+        <div class="d-flex align-items-center">
+            <a href="/pizzas" class="btn btn-primary m-2">
                 Home
-            </button>
-        </a>
-        <form method="get" th:action="@{/search}">
-            <input name="query" placeholder="search by pizza name" size="50" th:value="${query}" type="text">
-            <button class="btn btn-info" type="submit">Search</button>
-        </form>
+            </a>
+
+            <a href="/create" class="btn btn-success m-2">
+                Add new Pizza
+            </a>
+
+            <form method="get" th:action="@{/search}" class="ms-auto">
+                <input name="query" placeholder="search by pizza name" size="50" th:value="${query}" type="text">
+                <button class="btn btn-info" type="submit">Search</button>
+            </form>
+        </div>
+
     </header>
 </body>
 

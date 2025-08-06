@@ -6,7 +6,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Entity
@@ -21,14 +24,17 @@ public class Pizza {
     private String name;
 
     @Size(max = 350, message = "you've exceeded the 350 character limit")
+    @NotBlank(message = "must insert a description")
     @Lob
     private String description;
 
     @Size(max = 2048, message = "you've exceeded the 2048 character limit")
+    @NotBlank(message = "must insert an image url")
     @Lob
     private String image_url;
 
-    @NotBlank(message = "must insert a price")
+    @NotNull(message = "must insert a price")
+    @DecimalMin(value = "0.01", message = "must insert a price over 0.01")
     private Float price;
 
     public Integer getId() {
@@ -68,7 +74,9 @@ public class Pizza {
     }
 
     public void setPrice(Float price) {
-        this.price = price;
+        if (price != null && price > 0.01) {
+            this.price = price;
+        }
     }
 
     @Override
