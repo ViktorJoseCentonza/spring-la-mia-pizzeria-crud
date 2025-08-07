@@ -4,16 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>create</title>
+    <title>edit</title>
     <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.0.0/css/bootstrap.min.css}">
 </head>
 
 <body>
     <th:block th:insert="~{fragments/navbar.html :: navbar}"></th:block>
 
-    <h1 class="m-2">Creating new pizza</h1>
+    <h1 class="m-2" th:text="'Editing pizza: '+${pizza.name}"></h1>
 
-    <form class="row g-3 m-2" id="pizza-form" th:action="@{/create}" th:object="${pizza}" method="post">
+    <form class="row g-3 m-2" id="pizza-form" th:action="@{/edit/{id}(id = ${pizza.id})}" th:object="${pizza}"
+        method="post">
 
         <div class="col-12">
             <label for="name" class="form-label">Name</label>
@@ -61,7 +62,7 @@
 
         <div class="col-12">
             <button type="reset" class="btn btn-danger mx-2">Reset Fields</button>
-            <button type="submit" class="btn btn-success">Confirm Creation</button>
+            <button type="submit" class="btn btn-success">Confirm Edits</button>
         </div>
 
     </form>

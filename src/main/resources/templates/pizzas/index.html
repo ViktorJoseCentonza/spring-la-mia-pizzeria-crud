@@ -14,9 +14,21 @@
         <tr th:each="pizza : ${pizzas}">
             <th th:text="${pizza.name}"></th>
             <th>
-                <a th:href="@{http://localhost:8080/pizza/}+${pizza.id}" class="btn btn-primary">
+                <a th:href="@{http://localhost:8080/pizza/}+${pizza.id}" class="btn btn-primary btn-sm">
                     info
                 </a>
+            </th>
+
+            <th>
+                <a th:href="@{/edit/}+${pizza.id}" class="btn btn-warning btn-sm">
+                    edit
+                </a>
+            </th>
+
+            <th>
+                <form action="#" th:action="@{/delete/}+${pizza.id}" method="post" data-bs-toggle>
+                    <button type="submit" class="btn btn-danger btn-sm mx-2">delete</button>
+                </form>
             </th>
 
 

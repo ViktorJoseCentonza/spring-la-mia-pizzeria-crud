@@ -11,12 +11,43 @@
 <body>
     <th:block th:insert="~{fragments/navbar.html :: navbar}"></th:block>
     <th:block th:object="${pizza}">
-        <h1>[[*{name}]]</h1>
-        <span>[[*{description}]]</span>
-        <span>[[*{price}]]</span>
 
-        <img th:src="@{*{image_url}}" alt="foto-pizza">
+        <section class="d-flex justify-content-between">
+            <div class="d-flex">
+                <div>
+                    <h1>[[*{name}]]</h1>
+                    <div>
+                        <span>[[*{description}]]</span>
+                        <div class="d-flex">
+                            <a th:href="@{/edit/}+${pizza.id}" class="btn btn-warning btn-sm">
+                                edit
+                            </a>
+
+                            <form action="#" th:action="@{/delete/}+${pizza.id}" method="post">
+                                <button type="submit" class="btn btn-danger btn-sm mx-2">delete</button>
+                            </form>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+                <h1>[[*{price}]]$</h1>
+            </div>
+
+
+            <img class="img-fluid img-thumbnail w-25 m-4" th:src="@{*{image_url}}" alt="foto-pizza">
+
+        </section>
+
+
+
+
+
+
     </th:block>
+
 
 </body>
 
